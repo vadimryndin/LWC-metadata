@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="ShowMetadata LWC">
+        <lightning-input label="Object Name"
+         placeholder="account"
+         field-level-help="Please enter an object name"
+         onchange={handleChange}
+         required></lightning-input>
+         <lightning-input label="Layout Name"
+         placeholder="layout"
+         field-level-help="Please enter a layout name"
+         onchange={handleChange}
+         required></lightning-input>
+        <lightning-button label="Enter" class="slds-m-top_medium" onclick={handleClick}></lightning-button>
+        <p >{objectApiName}</p>
+        <p >{layoutName}</p>
+    </lightning-card>
+    
+
+
+    <lightning-card title="Metadata info">
+    <!--    <template if:true={contacts.data}>
+            <template for:each={contacts.data} for:item="contact">
+                <p key={contact.Id}>{contact.Name}</p>
+            </template>
+        </template>
+        <template if:true={contacts.error}>
+            <c-error-panel errors={contacts.error}></c-error-panel>
+        
+        </template>!-->
+    </lightning-card>
+
+</template>
