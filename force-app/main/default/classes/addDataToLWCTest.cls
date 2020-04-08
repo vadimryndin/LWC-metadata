@@ -3,8 +3,6 @@ public with sharing class addDataToLWCTest {
     @isTest
     public static void addDataToLWCTest() {
 
-        addDataToLWC.getData();
-
         List<ShowMetadata__c> testList = new List<ShowMetadata__c>();
         ShowMetadata__c testObj1 = new ShowMetadata__c();
         ShowMetadata__c testObj2 = new ShowMetadata__c();

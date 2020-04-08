@@ -7,9 +7,9 @@ export default class ShowMetadata extends LightningElement {
 
     fields = [];
 
-    @api objectApiNameInputValue  = '';
+    @api objectApiNameInputValue  = 'Contact';
     objectApiName;   
-    @api layoutNameInputValue = '';
+    @api layoutNameInputValue = 'Contact-Contact Layout';
     layoutName;
 
     handleChange(event) {
@@ -25,7 +25,15 @@ export default class ShowMetadata extends LightningElement {
         this.objectApiName = this.objectApiNameInputValue;
         this.layoutName = this.layoutNameInputValue;
 
-        retrieveMetadata({ objectApiName: '$objectApiName' , layoutName: '$layoutName'});
+        @wire(retrieveMetadata, { objectApiName: '$objectApiName' , layoutName: '$layoutName'});
+            .then((result) => {
+                this.fields = result;
+                this.error = undefined;
+            })
+            .catch((error) => {
+                this.error = error;
+                this.fields = undefined;
+            });
     }
 
   /*  @wire(getObjectInfo, { objectApiName: '$objectApiName' })
@@ -34,7 +42,7 @@ export default class ShowMetadata extends LightningElement {
  //   @wire(retrieveMetadata, { objectApiName: '$objectApiName' , layoutName: '$layoutName'} )
  //   objectInfo;
 
-    @wire(getData)
+ /*   @wire(getData)
         wiredFields({ error, data }) {
             if (data) {
                 this.fields = data;
@@ -43,5 +51,5 @@ export default class ShowMetadata extends LightningElement {
                 this.error = error;
                 this.fields = undefined;
             }
-        }
+        } */
 }

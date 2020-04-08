@@ -99,6 +99,9 @@ public with sharing class retrieveMetadata {
         }
         System.debug('******************** listToInsert size: ' + listToInsert.size());
         System.debug('******************** listToInsert: ' + listToInsert);
+
+        // fire return data to LWC
+        addDataToLWC.getData();
    
     }    
 }
