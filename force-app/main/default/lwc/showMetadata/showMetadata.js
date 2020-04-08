@@ -1,7 +1,7 @@
 import { LightningElement, wire, track, api } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getData from '@salesforce/apex/addDataToLWC.getData';
-//import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata';
+import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata';
 
 export default class ShowMetadata extends LightningElement {
 
@@ -24,6 +24,8 @@ export default class ShowMetadata extends LightningElement {
     handleClick() {
         this.objectApiName = this.objectApiNameInputValue;
         this.layoutName = this.layoutNameInputValue;
+
+        retrieveMetadata({ objectApiName: '$objectApiName' , layoutName: '$layoutName'});
     }
 
   /*  @wire(getObjectInfo, { objectApiName: '$objectApiName' })

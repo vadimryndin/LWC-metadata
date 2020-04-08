@@ -1,5 +1,8 @@
 trigger ShowMetadataTrigger on ShowMetadata__c (after insert) {
 
-    ShowMetadataTriggerHelper.ShowMetadataTriggerHelper(trigger.new);
+    if(Trigger.isAfter) {
+        ShowMetadataTriggerHelper.ShowMetadataTriggerHelper(trigger.new);
+    }
+    
 
 }

@@ -1,12 +1,12 @@
 <template>
     <lightning-card title="ShowMetadata LWC">
         <lightning-input label="Object Name"
-            placeholder="account"
+            placeholder="Contact"
             field-level-help="Please enter an object name"
             onchange={handleChange}
             required></lightning-input>
          <lightning-input label="Layout Name"
-            placeholder="layout"
+            placeholder="Contact-Contact Layout"
             field-level-help="Please enter a layout name"
             onchange={handleChange}
             required></lightning-input>
@@ -15,18 +15,16 @@
         <p >{layoutName}</p>
     </lightning-card>
     
-
-
     <lightning-card title="Metadata info">
         <template if:true={fields}>
             <template for:each={fields} for:item="field">
-                <p key={field.Layout_Field__c}>{field.Layout_Field__c}</p>
-                <p key={field.ObjectName__c}>{field.ObjectName__c}</p>
-                <p key={field.ObjectLabel__c}>{field.ObjectLabel__c}</p>
-                <p key={field.Object_Type__c}>{field.Object_Type__c}</p>
-                <p key={field.Id}>{field.Object_Is_Accessible__c}</p>
-                <p key={field.Id}>{field.Object_is_Createable__c}</p>
-                <p key={field.Id}>{field.Object_Is_Updateable__c}</p>
+                <p key={field.Layout_Field__c}>Layout Field : {field.Layout_Field__c}</p>
+                <p key={field.ObjectName__c}>Object Name : {field.ObjectName__c}</p>
+                <p key={field.ObjectLabel__c}>Object Label : {field.ObjectLabel__c}</p>
+                <p key={field.Object_Type__c}>Object Type : {field.Object_Type__c}</p>
+                <p key={field.Id}>Object Is Accessible : {field.Object_Is_Accessible__c}</p>
+                <p key={field.Id}>Object Is Createable : {field.Object_is_Createable__c}</p>
+                <p key={field.Id}>Object Is Updateable : {field.Object_Is_Updateable__c}</p>
             </template>
         </template>
         <template if:true={error}>
