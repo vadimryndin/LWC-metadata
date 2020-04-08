@@ -5,8 +5,8 @@ import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata
 
 export default class ShowMetadata extends LightningElement {
 
-    fields;
-    error;
+    @track fields;
+    @track error;
 
     @api objectApiNameInputValue  = 'Contact';
     objectApiName;   
@@ -42,15 +42,5 @@ export default class ShowMetadata extends LightningElement {
 */
  //   @wire(retrieveMetadata, { objectApiName: '$objectApiName' , layoutName: '$layoutName'} )
  //   objectInfo;
-
- /*   @wire(getData)
-        wiredFields({ error, data }) {
-            if (data) {
-                this.fields = data;
-                this.error = undefined;
-            } else if (error) {
-                this.error = error;
-                this.fields = undefined;
-            }
-        } */
+ 
 }

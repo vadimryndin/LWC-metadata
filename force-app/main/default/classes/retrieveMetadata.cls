@@ -64,16 +64,18 @@ public with sharing class retrieveMetadata {
 
         // Data for insert to Object
         Map<String,List<String>> mapToInsert = new Map<String,List<String>>();
-
-        for(String strVar : layoutItemfieldsFromLayout) {
-            List<String> values = fieldsFromObj.get(strVar.toLowerCase());
-            mapToInsert.put(strVar, values);
-        }
-        System.debug('****mapToInsert: ' + mapToInsert);
-
-        System.debug('************mapToInsert size: ' + mapToInsert.size());
+        List<String> values = new List<String>();
         System.debug('************fieldsFromLayout size: ' + layoutItemfieldsFromLayout.size());
         System.debug('************fieldsFromObj size: ' + fieldsFromObj.size());
+
+        for(String strVar : layoutItemfieldsFromLayout) {
+            if(strVar != null) {
+                values = fieldsFromObj.get(strVar.toLowerCase());
+                mapToInsert.put(strVar, values);
+            }
+        }
+        System.debug('****mapToInsert: ' + mapToInsert);
+        System.debug('************mapToInsert size: ' + mapToInsert.size());
 
         List<ShowMetadata__c> listToInsert = new List<ShowMetadata__c>();
 
