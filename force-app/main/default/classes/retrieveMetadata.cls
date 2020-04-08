@@ -1,6 +1,6 @@
 public with sharing class retrieveMetadata {
     @AuraEnabled
-    public static void retrieveMetadata(String objectApiName, String layoutName) {
+    public static List<ShowMetadata__c> retrieveMetadata(String objectApiName, String layoutName) {
 
         List<String> layoutNameList = new List<String>{layoutName};
         List<String> layoutItemfieldsFromLayout = new List<String>();
@@ -112,7 +112,9 @@ public with sharing class retrieveMetadata {
         System.debug('*************RETURN Id----: ' + test.size());
 
         // fire return data to LWC
-        addDataToLWC.getData();
+        List<ShowMetadata__c> dataToReturn = addDataToLWC.getData();
+        System.debug('*************RETURN DATA----: ' + dataToReturn.size());
+        return dataToReturn;
    
     }    
 }
