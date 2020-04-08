@@ -17,9 +17,28 @@
         <lightning-layout-item class="slds-p-left_xx-small">
             <lightning-button label="Enter" class="slds-m-top_medium" onclick={handleClick}></lightning-button>
         </lightning-layout-item>
-        
+    </lightning-card>
+    <lightning-card title= {objectApiNameInputValue}  {layoutNameInputValue}>    
         <p >{objectApiNameInputValue}</p>
         <p >{layoutNameInputValue}</p>
+        <div class="slds-m-around_medium">
+            <template for:each={fields} for:item="field">
+                <c-child-LWC
+                    key={field.Id}
+                    field={field}
+                ></c-child-LWC>
+            </template>
+        </div>
+<!--
+        <template if:true={fields}>
+            <template for:each={fields} for:item="field">
+
+                <p key={field.Id}>
+                    Layout Field : {field.Layout_Field__c}, Object Name : {field.ObjectName__c}, Object Label : {field.ObjectLabel__c}, Object Type : {field.Object_Type__c},
+                    Is Accessible : {field.Object_Is_Accessible__c}, Is Createable : {field.Object_is_Createable__c}, Is Updateable : {field.Object_Is_Updateable__c}
+                </p>
+            </template>
+        </template>
 
         <template if:true={fields}>
             <template for:each={fields} for:item="field">
@@ -29,6 +48,7 @@
                 </li>
             </template>
         </template>
+    -->
         <template if:true={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>
