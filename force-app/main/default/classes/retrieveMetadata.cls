@@ -12,6 +12,7 @@ public with sharing class retrieveMetadata {
         // get fields from Layout
         List<Metadata.Metadata> layouts = 
             Metadata.Operations.retrieve(Metadata.MetadataType.Layout, layoutNameList);
+        System.debug('*****layouts size: ' + layouts.size());
 
         Metadata.Layout layoutFromLwc = (Metadata.Layout) layouts.get(0);
         System.debug('*****layoutFromLwc: ' + layoutFromLwc);
@@ -82,16 +83,19 @@ public with sharing class retrieveMetadata {
         for(String keyVar :  mapToInsert.keySet()) {
             ShowMetadata__c objToInsert = new ShowMetadata__c();
 
-            objToInsert.Layout_Field__c = keyVar;
-            objToInsert.ObjectName__c = mapToInsert.get(keyVar).get(0);
-            objToInsert.ObjectLabel__c = mapToInsert.get(keyVar).get(1);
-            objToInsert.Object_Type__c = mapToInsert.get(keyVar).get(2);
-            objToInsert.Object_Is_Accessible__c = mapToInsert.get(keyVar).get(3);
-            objToInsert.Object_is_Createable__c = mapToInsert.get(keyVar).get(4);
-            objToInsert.Object_Is_Updateable__c = mapToInsert.get(keyVar).get(5);
-
-            listToInsert.add(objToInsert);
+            if(keyVar != null) {
+                objToInsert.Layout_Field__c = keyVar;
+                objToInsert.ObjectName__c = mapToInsert.get(keyVar).get(0);
+                objToInsert.ObjectLabel__c = mapToInsert.get(keyVar).get(1);
+                objToInsert.Object_Type__c = mapToInsert.get(keyVar).get(2);
+                objToInsert.Object_Is_Accessible__c = mapToInsert.get(keyVar).get(3);
+                objToInsert.Object_is_Createable__c = mapToInsert.get(keyVar).get(4);
+                objToInsert.Object_Is_Updateable__c = mapToInsert.get(keyVar).get(5);
+    
+                listToInsert.add(objToInsert);
             }
+            
+        }
             
         try {
             insert listToInsert;

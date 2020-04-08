@@ -27,11 +27,11 @@ export default class ShowMetadata extends LightningElement {
     //    this.layoutName = this.layoutNameInputValue;
 
         retrieveMetadata({ objectApiName: this.objectApiNameInputValue , layoutName: this.layoutNameInputValue})
-            .then((result) => {
+            .then(result => {
                 this.fields = result;
                 this.error = undefined;
             })
-            .catch((error) => {
+            .catch(error => {
                 this.error = error;
                 this.fields = undefined;
             });
