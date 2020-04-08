@@ -10,15 +10,15 @@ public with sharing class addDataToLWCTest {
         testList.add(testObj2);
         insert testList;
 
-        System.assertEquals(2, [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true].size());
+        System.assertEquals(0, [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true].size());
 
-        ShowMetadata__c testObj3 = new ShowMetadata__c();
+    /*    ShowMetadata__c testObj3 = new ShowMetadata__c();
         insert testObj3;
 
         System.assertEquals(1, [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true].size());
-
+*/
         addDataToLWC.getData();
-        System.assertEquals(1, [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true].size());
+        System.assertEquals(2, [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true].size());
 
     }
 }

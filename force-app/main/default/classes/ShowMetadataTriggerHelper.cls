@@ -25,25 +25,7 @@ public with sharing class ShowMetadataTriggerHelper {
                 }
             }
         }
-
-    /*    List<ShowMetadata__c> insertNow = [SELECT Id, Insert_Now__c FROM ShowMetadata__c WHERE Id IN : ListShowMetadata];
-        List<ShowMetadata__c> listUpd = new List<ShowMetadata__c>();
-        
-        for(ShowMetadata__c var : insertNow) {
-            var.Insert_Now__c = true;
-            listUpd.add(var);
-        }
-
-        try {
-            update listUpd;
-        }
-        catch(DmlException e) {
-            System.debug(e.getMessage());
-        }
-        System.debug('******************** insertNow size: ' + insertNow.size());
-        System.debug('******************** insertNow: ' + insertNow);
-        System.debug('******************** listUpd: ' + listUpd);
-    */
-    System.debug('******************** Trigger end *******' );
+   
+        System.debug('******************** Trigger end *******' );
     }
 }
