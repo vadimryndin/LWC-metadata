@@ -1,13 +1,13 @@
 <template>
     <lightning-card title="ShowMetadata LWC">
         <lightning-input label="Object Name"
-            placeholder="Contact"
             field-level-help="Please enter an object name"
+            value = {objectApiNameInputValue}
             onchange={handleChange}
             required></lightning-input>
          <lightning-input label="Layout Name"
-            placeholder="Contact-Contact Layout"
             field-level-help="Please enter a layout name"
+            value = {layoutNameInputValue}
             onchange={handleChange}
             required></lightning-input>
         <lightning-button label="Enter" class="slds-m-top_medium" onclick={handleClick}></lightning-button>

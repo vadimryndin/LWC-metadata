@@ -5,16 +5,16 @@ public with sharing class retrieveMetadata {
         List<String> layoutNameList = new List<String>{layoutName};
         List<String> layoutItemfieldsFromLayout = new List<String>();
 
-        System.debug('List<String> layoutNameList: ' + layoutNameList);
-        System.debug('String layoutName: ' + layoutName);
-        System.debug('String objectApiName: ' + objectApiName);
+        System.debug('******List<String> layoutNameList: ' + layoutNameList);
+        System.debug('******String layoutName: ' + layoutName);
+        System.debug('******String objectApiName: ' + objectApiName);
 
         // get fields from Layout
         List<Metadata.Metadata> layouts = 
             Metadata.Operations.retrieve(Metadata.MetadataType.Layout, layoutNameList);
 
         Metadata.Layout layoutFromLwc = (Metadata.Layout) layouts.get(0);
-        System.debug(layoutFromLwc);
+        System.debug('*****layoutFromLwc: ' + layoutFromLwc);
     /*    
         for(Metadata.Metadata layout : layouts) {
             System.debug('The layouts are:'+ layout.fullname);        
@@ -31,7 +31,7 @@ public with sharing class retrieveMetadata {
                 }
             }
         }
-        System.debug('layoutItemfieldsFromLayout: ' + layoutItemfieldsFromLayout);
+        System.debug('****layoutItemfieldsFromLayout: ' + layoutItemfieldsFromLayout);
 
         // get fields from Object
         Map<String, Schema.SObjectField> fieldMap = Schema.getGlobalDescribe()
@@ -39,7 +39,7 @@ public with sharing class retrieveMetadata {
             .getDescribe()
             .fields
             .getMap();
-        System.debug('Fields: ' + fieldMap);
+        System.debug('****Fields: ' + fieldMap);
 
         Map<String, List<String>> fieldsFromObj = new Map<String, List<String>>();
         
@@ -60,7 +60,7 @@ public with sharing class retrieveMetadata {
             
             fieldsFromObj.put(fieldName, result);
         }
-        System.debug('fieldsFromObj: ' + fieldsFromObj);
+        System.debug('****fieldsFromObj: ' + fieldsFromObj);
 
         // Data for insert to Object
         Map<String,List<String>> mapToInsert = new Map<String,List<String>>();
@@ -69,7 +69,7 @@ public with sharing class retrieveMetadata {
             List<String> values = fieldsFromObj.get(strVar.toLowerCase());
             mapToInsert.put(strVar, values);
         }
-        System.debug('mapToInsert: ' + mapToInsert);
+        System.debug('****mapToInsert: ' + mapToInsert);
 
         System.debug('************mapToInsert size: ' + mapToInsert.size());
         System.debug('************fieldsFromLayout size: ' + layoutItemfieldsFromLayout.size());

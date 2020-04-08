@@ -6,6 +6,7 @@ import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata
 export default class ShowMetadata extends LightningElement {
 
     fields = [];
+    error;
 
     @api objectApiNameInputValue  = 'Contact';
     objectApiName;   
@@ -22,10 +23,10 @@ export default class ShowMetadata extends LightningElement {
     }
 
     handleClick() {
-        this.objectApiName = this.objectApiNameInputValue;
-        this.layoutName = this.layoutNameInputValue;
+    //    this.objectApiName = this.objectApiNameInputValue;
+    //    this.layoutName = this.layoutNameInputValue;
 
-        @wire(retrieveMetadata, { objectApiName: '$objectApiName' , layoutName: '$layoutName'});
+        retrieveMetadata({ objectApiName: this.objectApiNameInputValue , layoutName: this.layoutNameInputValue})
             .then((result) => {
                 this.fields = result;
                 this.error = undefined;
