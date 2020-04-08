@@ -1,6 +1,7 @@
 public with sharing class ShowMetadataTriggerHelper {
     public static void ShowMetadataTriggerHelper(List<ShowMetadata__c> ListShowMetadata) {
 
+        System.debug('******************** ListShowMetadata: ' + ListShowMetadata);
         List<ShowMetadata__c> fromPreviousInsert = [SELECT Insert_Now__c FROM ShowMetadata__c
             WHERE Insert_Now__c = true];
 
@@ -24,7 +25,7 @@ public with sharing class ShowMetadataTriggerHelper {
             }
         }
 
-        List<ShowMetadata__c> insertNow = [SELECT Id FROM ShowMetadata__c WHERE Id IN : ListShowMetadata];
+        List<ShowMetadata__c> insertNow = [SELECT Id, Insert_Now__c FROM ShowMetadata__c WHERE Id IN : ListShowMetadata];
         List<ShowMetadata__c> listUpd = new List<ShowMetadata__c>();
         
         for(ShowMetadata__c var : insertNow) {
@@ -33,12 +34,13 @@ public with sharing class ShowMetadataTriggerHelper {
         }
 
         try {
-            insert listUpd;
+            update listUpd;
         }
         catch(DmlException e) {
             System.debug(e.getMessage());
         }
         System.debug('******************** insertNow size: ' + insertNow.size());
         System.debug('******************** insertNow: ' + insertNow);
+        System.debug('******************** listUpd: ' + listUpd);
     }
 }
