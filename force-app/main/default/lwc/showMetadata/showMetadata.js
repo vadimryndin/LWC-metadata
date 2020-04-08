@@ -29,27 +29,17 @@ export default class ShowMetadata extends LightningElement {
   /*  @wire(getObjectInfo, { objectApiName: '$objectApiName' })
     objectInfo;
 */
-    @wire(retrieveMetadata, { objectApiName: '$objectApiName' , layoutName: '$layoutName'} )
-    objectInfo;
+ //   @wire(retrieveMetadata, { objectApiName: '$objectApiName' , layoutName: '$layoutName'} )
+ //   objectInfo;
 
-    @wire(getData, {})
-        wiredFields({error, data}) {
-            if(error) {
-                this.error = error;
-            } else if(data) {
+    @wire(getData)
+        wiredFields({ error, data }) {
+            if (data) {
                 this.fields = data;
-            }
-        }
-
-   /* handleLoad() {
-        getData()
-            .then((result) => {
-                this.fields = result;
                 this.error = undefined;
-            })
-            .catch((error) => {
+            } else if (error) {
                 this.error = error;
                 this.fields = undefined;
-            });
-    } */
+            }
+        }
 }
