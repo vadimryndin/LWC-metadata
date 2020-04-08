@@ -13,20 +13,22 @@
         <lightning-button label="Enter" class="slds-m-top_medium" onclick={handleClick}></lightning-button>
         <p >{objectApiName}</p>
         <p >{layoutName}</p>
-    </lightning-card>
+ <!--   </lightning-card>
     
     <lightning-card title="Metadata info">
-        <p >{fields.Id}</p>
+        <p >{fields}</p>     -->
         <template if:true={fields}>
             <template for:each={fields} for:item="field">
-                <p key={field.Id}>Layout  : {field.Name}</p>
-                <p key={field.Layout_Field__c}>Layout Field : {field.Layout_Field__c}</p>
-                <p key={field.ObjectName__c}>Object Name : {field.ObjectName__c}</p>
-                <p key={field.ObjectLabel__c}>Object Label : {field.ObjectLabel__c}</p>
+                <li key={field.Id}>
+                    {field.Layout_Field__c}, {field.ObjectName__c}
+                </li>
+        <!--        <p key={field.Id}>Layout Field : {field.Layout_Field__c}, {field.ObjectName__c}, {field.ObjectLabel__c}</p>
+                 <p key={field.Id}>Object Name : {field.ObjectName__c}</p>
+                <p key={field.Id}>Object Label : {field.ObjectLabel__c}</p>
                 <p key={field.Object_Type__c}>Object Type : {field.Object_Type__c}</p>
                 <p key={field.Id}>Object Is Accessible : {field.Object_Is_Accessible__c}</p>
                 <p key={field.Id}>Object Is Createable : {field.Object_is_Createable__c}</p>
-                <p key={field.Id}>Object Is Updateable : {field.Object_Is_Updateable__c}</p>
+                <p key={field.Id}>Object Is Updateable : {field.Object_Is_Updateable__c}</p>   -->
             </template>
         </template>
         <template if:true={error}>
