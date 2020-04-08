@@ -5,7 +5,7 @@ import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata
 
 export default class ShowMetadata extends LightningElement {
 
-    fields = [];
+    fields;
     error;
 
     @api objectApiNameInputValue  = 'Contact';

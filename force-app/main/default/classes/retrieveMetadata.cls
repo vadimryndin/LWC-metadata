@@ -1,5 +1,5 @@
 public with sharing class retrieveMetadata {
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static void retrieveMetadata(String objectApiName, String layoutName) {
 
         List<String> layoutNameList = new List<String>{layoutName};

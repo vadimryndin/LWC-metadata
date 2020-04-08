@@ -16,8 +16,10 @@
     </lightning-card>
     
     <lightning-card title="Metadata info">
+        <p >{fields.Id}</p>
         <template if:true={fields}>
             <template for:each={fields} for:item="field">
+                <p key={field.Id}>Layout  : {field.Name}</p>
                 <p key={field.Layout_Field__c}>Layout Field : {field.Layout_Field__c}</p>
                 <p key={field.ObjectName__c}>Object Name : {field.ObjectName__c}</p>
                 <p key={field.ObjectLabel__c}>Object Label : {field.ObjectLabel__c}</p>
