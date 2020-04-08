@@ -49,11 +49,13 @@ public with sharing class retrieveMetadata {
             String labelS = fieldMap.get(fieldName).getDescribe().getLabel();
             String typeS = String.valueOf(fieldMap.get(fieldName).getDescribe().getType());
             String isAccessibleS = String.valueOf(fieldMap.get(fieldName).getDescribe().isAccessible());
+            String isCreateableS = String.valueOf(fieldMap.get(fieldName).getDescribe().isCreateable());
             String isUpdateableS = String.valueOf(fieldMap.get(fieldName).getDescribe().isUpdateable());
             result.add(nameS);
             result.add(labelS);
             result.add(typeS);
             result.add(isAccessibleS);
+            result.add(isCreateableS);
             result.add(isUpdateableS);
             
             fieldsFromObj.put(fieldName, result);
@@ -83,7 +85,8 @@ public with sharing class retrieveMetadata {
             objToInsert.ObjectLabel__c = mapToInsert.get(keyVar).get(1);
             objToInsert.Object_Type__c = mapToInsert.get(keyVar).get(2);
             objToInsert.Object_Is_Accessible__c = mapToInsert.get(keyVar).get(3);
-            objToInsert.Object_Is_Updateable__c = mapToInsert.get(keyVar).get(4);
+            objToInsert.Object_is_Createable__c = mapToInsert.get(keyVar).get(4);
+            objToInsert.Object_Is_Updateable__c = mapToInsert.get(keyVar).get(5);
 
             listToInsert.add(objToInsert);
             }
