@@ -84,17 +84,19 @@ public with sharing class retrieveMetadata {
             ShowMetadata__c objToInsert = new ShowMetadata__c();
 
             if(keyVar != null) {
-                objToInsert.Layout_Field__c = keyVar;
-                objToInsert.ObjectName__c = mapToInsert.get(keyVar).get(0);
-                objToInsert.ObjectLabel__c = mapToInsert.get(keyVar).get(1);
-                objToInsert.Object_Type__c = mapToInsert.get(keyVar).get(2);
-                objToInsert.Object_Is_Accessible__c = mapToInsert.get(keyVar).get(3);
-                objToInsert.Object_is_Createable__c = mapToInsert.get(keyVar).get(4);
-                objToInsert.Object_Is_Updateable__c = mapToInsert.get(keyVar).get(5);
-    
-                listToInsert.add(objToInsert);
+                if(mapToInsert.get(keyVar) != null){
+                    objToInsert.Layout_Field__c = keyVar;
+                    objToInsert.ObjectName__c = mapToInsert.get(keyVar).get(0);
+                    objToInsert.ObjectLabel__c = mapToInsert.get(keyVar).get(1);
+                    objToInsert.Object_Type__c = mapToInsert.get(keyVar).get(2);
+                    objToInsert.Object_Is_Accessible__c = mapToInsert.get(keyVar).get(3);
+                    objToInsert.Object_is_Createable__c = mapToInsert.get(keyVar).get(4);
+                    objToInsert.Object_Is_Updateable__c = mapToInsert.get(keyVar).get(5);
+                    objToInsert.Insert_Now__c = true; 
+        
+                    listToInsert.add(objToInsert);
+                }
             }
-            
         }
             
         try {
@@ -105,6 +107,9 @@ public with sharing class retrieveMetadata {
         }
         System.debug('******************** listToInsert size: ' + listToInsert.size());
         System.debug('******************** listToInsert: ' + listToInsert);
+        // this 2 linse for debug only
+        List<ShowMetadata__c> test = [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true];
+        System.debug('*************RETURN Id----: ' + test.size());
 
         // fire return data to LWC
         addDataToLWC.getData();
