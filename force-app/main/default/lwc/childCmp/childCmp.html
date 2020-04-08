@@ -1,18 +1,20 @@
 <template>
-    <template if:true={fields}>
-        <lightning-layout vertical-align="center">
-            <lightning-layout-item padding="around-small">
-                <p>Layout Field : {field.Layout_Field__c}</p>
-                <p>Object Name : {field.ObjectName__c}</p>
-                <p>Object Label : {field.ObjectLabel__c}</p>
-                <p>Object Type : {field.Object_Type__c}</p>
-                <p>Is Accessible : {field.Object_Is_Accessible__c}</p>
-                <p>Is Createable : {field.Object_is_Createable__c}</p>
-                <p>Is Updateable : {field.Object_Is_Updateable__c}</p>
-            </lightning-layout-item>
-        </lightning-layout>
-    </template>
-    <template if:false={fields}>
-        <p>No data available.</p>
-    </template>   
+    <lightning-card icon-name="standard:opportunity">
+        <template if:true={field}>
+            <lightning-layout vertical-align="center">
+                <lightning-layout-item padding="around-large">
+                    <p>Layout Field : {field.Layout_Field__c}</p>
+                    <p>Object Name : {field.ObjectName__c}</p>
+                    <p>Object Label : {field.ObjectLabel__c}</p>
+                    <p>Object Type : {field.Object_Type__c}</p>
+                    <p>Is Accessible : {field.Object_Is_Accessible__c}</p>
+                    <p>Is Createable : {field.Object_is_Createable__c}</p>
+                    <p>Is Updateable : {field.Object_Is_Updateable__c}</p>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        <template if:false={field}>
+            <p>No data available.</p>
+        </template>
+    </lightning-card>   
 </template>

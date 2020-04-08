@@ -18,15 +18,15 @@
             <lightning-button label="Enter" class="slds-m-top_medium" onclick={handleClick}></lightning-button>
         </lightning-layout-item>
     </lightning-card>
-    <lightning-card title= {objectApiNameInputValue}  {layoutNameInputValue}>    
-        <p >{objectApiNameInputValue}</p>
-        <p >{layoutNameInputValue}</p>
+    <div title= "Data">    
+        <p>Object Name : {objectApiNameInputValue}</p>
+        <p>Layout Name : {layoutNameInputValue}</p>
         <div class="slds-m-around_medium">
             <template for:each={fields} for:item="field">
-                <c-child-LWC
+                <c-child-cmp
                     key={field.Id}
                     field={field}
-                ></c-child-LWC>
+                ></c-child-cmp>
             </template>
         </div>
 <!--
@@ -52,6 +52,6 @@
         <template if:true={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>
-    </lightning-card>
+    </div>
 
 </template>
