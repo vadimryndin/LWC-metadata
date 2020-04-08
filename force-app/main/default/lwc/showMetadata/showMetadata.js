@@ -1,8 +1,11 @@
 import { LightningElement, wire, track, api } from 'lwc';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
-import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata';
+import getData from '@salesforce/apex/addDataToLWC.getData';
+//import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata';
 
 export default class ShowMetadata extends LightningElement {
+
+    fields = [];
 
     @api objectApiNameInputValue  = '';
     objectApiName;   
@@ -28,4 +31,25 @@ export default class ShowMetadata extends LightningElement {
 */
     @wire(retrieveMetadata, { objectApiName: '$objectApiName' , layoutName: '$layoutName'} )
     objectInfo;
+
+    @wire(getData, {})
+        wiredFields({error, data}) {
+            if(error) {
+                this.error = error;
+            } else if(data) {
+                this.fields = data;
+            }
+        }
+
+   /* handleLoad() {
+        getData()
+            .then((result) => {
+                this.fields = result;
+                this.error = undefined;
+            })
+            .catch((error) => {
+                this.error = error;
+                this.fields = undefined;
+            });
+    } */
 }
