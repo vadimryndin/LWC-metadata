@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Metadata LWC">
+        <lightning-layout-item flexibility="grow">
+            <lightning-input label="Object Name"
+                id="inputObject"
+                field-level-help="Please enter an object name"
+                value = {objectApiNameInputValue}
+                onchange={handleChange}
+                onkeypress = {handle}
+                required>
+            </lightning-input>
+            <lightning-input label="Layout Name"
+                id="inputLabel"
+                field-level-help="Please enter a layout name"
+                value = {layoutNameInputValue}
+                onchange={handleChange}
+                onkeypress = {handle}
+                required>
+            </lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item class="slds-p-left_xx-small">
+            <lightning-button label="Enter" id="enterButton" class="slds-m-top_medium" onclick={handleClick} 
+                style="display: none;"></lightning-button>
+        </lightning-layout-item>
+    </lightning-card>
+    <lightning-card title="You enter">
+        <div title= "Data">    
+            <p>Object Name : {objectApiNameInputValue}</p>
+            <p>Layout Name : {layoutNameInputValue}</p>
+        </div>
+    </lightning-card>
+        <div class="slds-m-around_medium">
+            <template for:each={fields} for:item="field">
+                <c-child-cmp
+                    key={field.Id}
+                    field={field}
+                ></c-child-cmp>
+            </template>
+        </div>
+        <template if:true={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template>
+</template>
