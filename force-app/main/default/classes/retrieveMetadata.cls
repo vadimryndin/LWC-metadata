@@ -14,8 +14,12 @@ public with sharing class retrieveMetadata {
             Metadata.Operations.retrieve(Metadata.MetadataType.Layout, layoutNameList);
         System.debug('*****layouts size: ' + layouts.size());
 
-        Metadata.Layout layoutFromLwc = (Metadata.Layout) layouts.get(0);
-        System.debug('*****layoutFromLwc: ' + layoutFromLwc);
+        Metadata.Layout layoutFromLwc = new Metadata.Layout();
+        if(!layouts.isEmpty()) {
+            layoutFromLwc = (Metadata.Layout) layouts.get(0);
+            System.debug('*****layoutFromLwc: ' + layoutFromLwc);
+        }
+        
     /*    
         for(Metadata.Metadata layout : layouts) {
             System.debug('The layouts are:'+ layout.fullname);        
@@ -28,6 +32,7 @@ public with sharing class retrieveMetadata {
 
                     for (Metadata.LayoutItem item : column.layoutItems) {
                         layoutItemfieldsFromLayout.add(item.field);
+                        System.debug('****item.field: ' + item.field);
                     }
                 }
             }
@@ -46,18 +51,20 @@ public with sharing class retrieveMetadata {
         
         for (String fieldName : fieldMap.keySet()) {
             List<String> result = new List<String>();
-            String nameS = fieldMap.get(fieldName).getDescribe().getName();
-            String labelS = fieldMap.get(fieldName).getDescribe().getLabel();
-            String typeS = String.valueOf(fieldMap.get(fieldName).getDescribe().getType());
-            String isAccessibleS = String.valueOf(fieldMap.get(fieldName).getDescribe().isAccessible());
-            String isCreateableS = String.valueOf(fieldMap.get(fieldName).getDescribe().isCreateable());
-            String isUpdateableS = String.valueOf(fieldMap.get(fieldName).getDescribe().isUpdateable());
-            result.add(nameS);
-            result.add(labelS);
-            result.add(typeS);
-            result.add(isAccessibleS);
-            result.add(isCreateableS);
-            result.add(isUpdateableS);
+
+            Schema.DescribeFieldResult dfr = fieldMap.get(fieldName).getDescribe();  
+            String name = String.valueOf(dfr.getName());
+            String label = String.valueOf(dfr.getLabel());
+            String type = String.valueOf(dfr.getType());
+            String isAccessible = String.valueOf(dfr.isAccessible());
+            String isCreateable = String.valueOf(dfr.isCreateable());
+            String isUpdateable = String.valueOf(dfr.isUpdateable());
+            result.add(name);
+            result.add(label);
+            result.add(type);
+            result.add(isAccessible);
+            result.add(isCreateable);
+            result.add(isUpdateable);
             
             fieldsFromObj.put(fieldName, result);
         }
@@ -70,10 +77,10 @@ public with sharing class retrieveMetadata {
         System.debug('************fieldsFromObj size: ' + fieldsFromObj.size());
 
         for(String strVar : layoutItemfieldsFromLayout) {
-            if(strVar != null) {
+        //    if(strVar != null) {
                 values = fieldsFromObj.get(strVar.toLowerCase());
                 mapToInsert.put(strVar, values);
-            }
+        //    }
         }
         System.debug('****mapToInsert: ' + mapToInsert);
         System.debug('************mapToInsert size: ' + mapToInsert.size());
@@ -83,7 +90,7 @@ public with sharing class retrieveMetadata {
         for(String keyVar :  mapToInsert.keySet()) {
             ShowMetadata__c objToInsert = new ShowMetadata__c();
 
-            if(keyVar != null) {
+        //    if(keyVar != null) {
                 if(mapToInsert.get(keyVar) != null){
                     objToInsert.Layout_Field__c = keyVar;
                     objToInsert.ObjectName__c = mapToInsert.get(keyVar).get(0);
@@ -96,7 +103,7 @@ public with sharing class retrieveMetadata {
         
                     listToInsert.add(objToInsert);
                 }
-            }
+        //    }
         }
             
         try {
