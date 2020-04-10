@@ -100,10 +100,6 @@ public with sharing class RetriveMetadata {
         }
         System.debug('******************** listToInsert size: ' + listToInsert.size());
         System.debug('******************** listToInsert: ' + listToInsert);
-        // this 2 lines for debug only
-        List<ShowMetadata__c> test = [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true];
-        System.debug('*************RETURN Id----: ' + test.size());
-        System.debug('*************RETURN Id----: ' + test);
 
         // fire return data to LWC
         List<ShowMetadata__c> MdtToReturn = addDataToLWC.getData();
@@ -118,11 +114,7 @@ public with sharing class RetriveMetadata {
         System.debug('*************RETURN MdtToReturn----: ' + MdtToReturn);
         System.debug('*************RETURN DATA----: ' + dataToReturn.size());
         System.debug('*************RETURN DATA----: ' + dataToReturn);
-        System.debug('*************RETURN DATA----: ' );
-        System.debug('*************RETURN DATA----: ' );
-        System.debug('*************RETURN DATA----: ' );
-        System.debug('*************RETURN DATA----: ' );
-        System.debug('*************RETURN DATA----: ' );
+
         return dataToReturn;
     }
 
