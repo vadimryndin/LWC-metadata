@@ -1,7 +1,13 @@
+/*
+    NOT USED
+*/
+
+
+
 public with sharing class retrieveMetadata {
     @AuraEnabled
-    public static List<ShowMetadata__c> retrieveMetadata(String objectApiName, String layoutName) {
-
+   public static void retrieveMetadata(String objectApiName, String layoutName) {
+/* 
         List<String> layoutNameList = new List<String>{layoutName};
         List<String> layoutItemfieldsFromLayout = new List<String>();
 
@@ -20,11 +26,11 @@ public with sharing class retrieveMetadata {
             System.debug('*****layoutFromLwc: ' + layoutFromLwc);
         }
         
-    /*    
+        
         for(Metadata.Metadata layout : layouts) {
             System.debug('The layouts are:'+ layout.fullname);        
         }
-    */
+    
         for (Metadata.LayoutSection section : layoutFromLwc.layoutSections) {
 
             for (Metadata.LayoutColumn column : section.layoutColumns) {
@@ -114,14 +120,15 @@ public with sharing class retrieveMetadata {
         }
         System.debug('******************** listToInsert size: ' + listToInsert.size());
         System.debug('******************** listToInsert: ' + listToInsert);
-        // this 2 linse for debug only
+        // this 2 lines for debug only
         List<ShowMetadata__c> test = [SELECT Id FROM ShowMetadata__c WHERE Insert_Now__c = true];
         System.debug('*************RETURN Id----: ' + test.size());
 
         // fire return data to LWC
         List<ShowMetadata__c> dataToReturn = addDataToLWC.getData();
         System.debug('*************RETURN DATA----: ' + dataToReturn.size());
-        return dataToReturn;
-   
-    }    
+        return dataToReturn;  
+*/
+    } 
+  
 }

@@ -6,11 +6,11 @@ public with sharing class retrieveMetadataTest {
         final  String objectApiName1 = 'Case';
         final  String layoutName = 'Contact-Contact Layout';
 
-        retrieveMetadata.retrieveMetadata(objectApiName, layoutName); 
+        RetriveMetadata.retriveMetadata(objectApiName, layoutName); 
 
         System.assertEquals(23, [SELECT Id FROM ShowMetadata__c].size());
 
-        retrieveMetadata.retrieveMetadata(objectApiName1, layoutName); 
+        RetriveMetadata.retriveMetadata(objectApiName1, layoutName); 
 
         System.assertEquals(5, [SELECT Id FROM ShowMetadata__c].size());
         
