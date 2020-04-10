@@ -84,7 +84,7 @@ public with sharing class RetriveMetadata {
         }
 
         // fire return data to LWC
-        List<ShowMetadata__c> MdtToReturn = addDataToLWC.getData();
+        List<ShowMetadata__c> MdtToReturn = AddDataToLWC.getData();
         List<WrapperObject> dataToReturn = new List<WrapperObject>();
 
         for(ShowMetadata__c var : MdtToReturn) {
