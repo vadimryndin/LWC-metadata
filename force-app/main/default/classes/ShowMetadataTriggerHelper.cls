@@ -1,8 +1,6 @@
 public with sharing class ShowMetadataTriggerHelper {
     public static void ShowMetadataTriggerHelper(List<ShowMetadata__c> ListShowMetadata) {
 
-        System.debug('******************** ListShowMetadata: ' + ListShowMetadata);
-        System.debug('******************** ListShowMetadata size: ' + ListShowMetadata.size());
         List<ShowMetadata__c> fromPreviousInsert = [SELECT Insert_Now__c FROM ShowMetadata__c
             WHERE Insert_Now__c = true];
 
@@ -25,7 +23,5 @@ public with sharing class ShowMetadataTriggerHelper {
                 }
             }
         }
-   
-        System.debug('******************** Trigger end *******' );
     }
 }

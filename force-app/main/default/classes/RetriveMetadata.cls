@@ -5,19 +5,13 @@ public with sharing class RetriveMetadata {
         List<String> layoutNameList = new List<String>{layoutName};
         List<String> layoutItemfieldsFromLayout = new List<String>();
 
-        System.debug('******List<String> layoutNameList: ' + layoutNameList);
-        System.debug('******String layoutName: ' + layoutName);
-        System.debug('******String objectApiName: ' + objectApiName);
-
         // get fields from Layout
         List<Metadata.Metadata> layouts = 
             Metadata.Operations.retrieve(Metadata.MetadataType.Layout, layoutNameList);
-        System.debug('*****layouts size: ' + layouts.size());
 
         Metadata.Layout layoutFromLwc = new Metadata.Layout();
         if(!layouts.isEmpty()) {
             layoutFromLwc = (Metadata.Layout) layouts.get(0);
-            System.debug('*****layoutFromLwc: ' + layoutFromLwc);
         }
         
         for (Metadata.LayoutSection section : layoutFromLwc.layoutSections) {
@@ -27,12 +21,10 @@ public with sharing class RetriveMetadata {
 
                     for (Metadata.LayoutItem item : column.layoutItems) {
                         layoutItemfieldsFromLayout.add(item.field);
-                        System.debug('****item.field: ' + item.field);
                     }
                 }
             }
         }
-        System.debug('****layoutItemfieldsFromLayout: ' + layoutItemfieldsFromLayout);
 
         // get fields from Object
         Map<String, Schema.SObjectField> fieldMap = Schema.getGlobalDescribe()
@@ -40,7 +32,6 @@ public with sharing class RetriveMetadata {
             .getDescribe()
             .fields
             .getMap();
-        System.debug('****Fields: ' + fieldMap);
 
         List<WrapperObject> listWrapObjFieldsFromObj = new List<WrapperObject>(); 
 
@@ -53,14 +44,10 @@ public with sharing class RetriveMetadata {
 
             listWrapObjFieldsFromObj.add(wrapObj);  
         }
-        System.debug('****fieldsFromObj: ' + listWrapObjFieldsFromObj);
 
         // Data for insert to Object
         Map<String, WrapperObject> mapToInsert = new Map<String, WrapperObject>();
         List<String> values = new List<String>();
-        System.debug('************fieldsFromLayout size: ' + layoutItemfieldsFromLayout.size());
-        System.debug('************listWrapObjFieldsFromObj size: ' + listWrapObjFieldsFromObj.size());
-
 
         for(String strVar : layoutItemfieldsFromLayout){
             
@@ -70,9 +57,6 @@ public with sharing class RetriveMetadata {
                 }
             }
         }   
-        
-        System.debug('****mapToInsert: ' + mapToInsert);
-        System.debug('************mapToInsert size: ' + mapToInsert.size());
 
         List<ShowMetadata__c> listToInsert = new List<ShowMetadata__c>();
 
@@ -98,8 +82,6 @@ public with sharing class RetriveMetadata {
         catch(DmlException e) {
             System.debug(e.getMessage());
         }
-        System.debug('******************** listToInsert size: ' + listToInsert.size());
-        System.debug('******************** listToInsert: ' + listToInsert);
 
         // fire return data to LWC
         List<ShowMetadata__c> MdtToReturn = addDataToLWC.getData();
@@ -110,50 +92,45 @@ public with sharing class RetriveMetadata {
                 var.Object_Is_Accessible__c, var.Object_is_Createable__c, var.Object_Is_Updateable__c));
         }
 
-        System.debug('*************RETURN MdtToReturn----: ' + MdtToReturn.size());
-        System.debug('*************RETURN MdtToReturn----: ' + MdtToReturn);
-        System.debug('*************RETURN DATA----: ' + dataToReturn.size());
-        System.debug('*************RETURN DATA----: ' + dataToReturn);
-
         return dataToReturn;
     }
 
-        public class WrapperObject {
-            public String layoutFIeld;
-            public String name;
-            public String label;
-            public Schema.DisplayType type;
-            public Boolean isAccessible;
-            public Boolean isCreateable;
-            public Boolean isUpdateable;
-            public Boolean isInsert;
-            public String typeMdt;
-            public String isAccessibleMdt;
-            public String isCreateableMdt;
-            public String isUpdateableMdt;
-            public Id id;
+    public class WrapperObject {
+        public String layoutFIeld;
+        public String name;
+        public String label;
+        public Schema.DisplayType type;
+        public Boolean isAccessible;
+        public Boolean isCreateable;
+        public Boolean isUpdateable;
+        public Boolean isInsert;
+        public String typeMdt;
+        public String isAccessibleMdt;
+        public String isCreateableMdt;
+        public String isUpdateableMdt;
+        public Id Id;
 
-            public WrapperObject (String name, String label, Schema.DisplayType type, 
-                Boolean isAccessible, Boolean isCreateable, Boolean isUpdateable) {
-                    this.name = name;
-                    this.label = label;
-                    this.type = type;
-                    this.isAccessible = isAccessible;
-                    this.isCreateable = isCreateable;
-                    this.isUpdateable = isUpdateable;
-            }
-
-            public WrapperObject (Id id, String layoutFIeld, String name, String label, String typeMdt, 
-                String isAccessibleMdt, String isCreateableMdt, String isUpdateableMdt) {
-                    this.id = id;
-                    this.layoutFIeld = layoutFIeld;
-                    this.name = name;
-                    this.label = label;
-                    this.typeMdt = typeMdt;
-                    this.isAccessibleMdt = isAccessibleMdt;
-                    this.isCreateableMdt = isCreateableMdt;
-                    this.isUpdateableMdt = isUpdateableMdt;
-                    
-            }
+        public WrapperObject (String name, String label, Schema.DisplayType type, 
+            Boolean isAccessible, Boolean isCreateable, Boolean isUpdateable) {
+                this.name = name;
+                this.label = label;
+                this.type = type;
+                this.isAccessible = isAccessible;
+                this.isCreateable = isCreateable;
+                this.isUpdateable = isUpdateable;
         }
+
+        public WrapperObject (Id Id, String layoutFIeld, String name, String label, String typeMdt, 
+            String isAccessibleMdt, String isCreateableMdt, String isUpdateableMdt) {
+                this.Id = Id;
+                this.layoutFIeld = layoutFIeld;
+                this.name = name;
+                this.label = label;
+                this.typeMdt = typeMdt;
+                this.isAccessibleMdt = isAccessibleMdt;
+                this.isCreateableMdt = isCreateableMdt;
+                this.isUpdateableMdt = isUpdateableMdt;
+                
+        }
+    }
 }
