@@ -1,10 +1,10 @@
 import { LightningElement, wire, track, api } from 'lwc';
-import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata';
+//import retrieveMetadata from '@salesforce/apex/retrieveMetadata.retrieveMetadata';
+import retriveMetadata from '@salesforce/apex/RetriveMetadata.retriveMetadata';
 
 export default class LwcMtd extends LightningElement {
     @track fields;
     @track error;
-    inputVar;
 
     @api objectApiNameInputValue  = 'Contact';
     objectApiName;   
@@ -37,7 +37,7 @@ export default class LwcMtd extends LightningElement {
         if(event.key === "Enter") {
             event.preventDefault();
 
-            retrieveMetadata({ objectApiName: this.objectApiNameInputValue , layoutName: this.layoutNameInputValue})
+            retriveMetadata({ objectApiName: this.objectApiNameInputValue , layoutName: this.layoutNameInputValue})
             .then(result => {
                 this.fields = result;
                 this.error = undefined;
