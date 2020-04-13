@@ -93,23 +93,22 @@ public with sharing class RetriveMetadata {
         }
 
         return dataToReturn;
-        //return MdtToReturn;
     }
 
     public class WrapperObject {
-        public String layoutFIeld;
-        public String name;
-        public String label;
+        @AuraEnabled public String layoutFIeld {get;set;}
+        @AuraEnabled public String name {get;set;}
+        @AuraEnabled public String label {get;set;}
         public Schema.DisplayType type;
         public Boolean isAccessible;
         public Boolean isCreateable;
         public Boolean isUpdateable;
         public Boolean isInsert;
-        public String typeMdt;
-        public String isAccessibleMdt;
-        public String isCreateableMdt;
-        public String isUpdateableMdt;
-        public Id Id;
+        @AuraEnabled public String typeMdt {get;set;}
+        @AuraEnabled public String isAccessibleMdt {get;set;}
+        @AuraEnabled public String isCreateableMdt {get;set;}
+        @AuraEnabled public String isUpdateableMdt {get;set;}
+        @AuraEnabled public Id Id {get;set;}
 
         public WrapperObject (String name, String label, Schema.DisplayType type, 
             Boolean isAccessible, Boolean isCreateable, Boolean isUpdateable) {
